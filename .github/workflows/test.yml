@@ -1,0 +1,51 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'krampus_cradle/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.13']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package + test deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[test]"
+
+      - name: Run test suite
+        run: |
+          python -m pytest tests/ -q
+
+      - name: Prove a wheel install runs the whole chain
+        run: |
+          # The test suite runs from the checkout, where the parts are found by path.
+          # A wheel is a different layout: this step installs the built artifact into a
+          # clean environment and requires --doctor to pass and --demo to reach the
+          # sentinel. Without it a wheel that ships only cradle.py passes every test.
+          python -m pip install --upgrade build
+          python -m build --wheel --outdir dist
+          python -m venv /tmp/wheel-venv
+          /tmp/wheel-venv/bin/pip install --no-index dist/*.whl
+          /tmp/wheel-venv/bin/cradle --doctor
+          /tmp/wheel-venv/bin/cradle --demo

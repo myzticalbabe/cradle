@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "krampus-cradle"
+version = "0.1.0"
+description = "One command over sword, defender, sentinel and memory — the composition, not a fifth part"
+readme = "README.md"
+authors = [{name = "Azazael"}]
+license = {text = "CDDL-1.1"}
+requires-python = ">=3.10"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+]
+
+# Stdlib only: the five parts are vendored inside this package, not pulled from an index.
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8.3"]
+
+[project.scripts]
+# The product name is CRADLE; the distribution is krampus-cradle because the bare
+# `cradle` name on PyPI belongs to an unrelated project.
+cradle = "krampus_cradle.cradle:main"
+
+[project.urls]
+Homepage = "https://github.com/myzticalbabe/cradle"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["krampus_cradle*"]
+
+# The parts are loaded from file paths, not imported by module name, so they must ship
+# as data inside the package. Without this line the wheel contained only cradle.py and
+# `cradle --doctor` reported all five parts absent (measured 2026-11-11).
+[tool.setuptools.package-data]
+krampus_cradle = ["tools/*.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+pythonpath = ["."]
