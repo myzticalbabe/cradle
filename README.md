@@ -21,10 +21,10 @@ is the front door.
 
 ```bash
 # 1. the built wheel, attached to the release (works today, no index needed)
-pip install https://github.com/myzticalbabe/cradle/releases/download/v0.1.0/krampus_cradle-0.1.0-py3-none-any.whl
+pip install https://github.com/myzticalbabe/cradle/releases/download/v0.1.1/krampus_cradle-0.1.1-py3-none-any.whl
 
 # 2. straight from the repository
-pip install "krampus-cradle @ git+https://github.com/myzticalbabe/cradle.git@v0.1.0"
+pip install "krampus-cradle @ git+https://github.com/myzticalbabe/cradle.git@v0.1.1"
 
 # 3. from a checkout, with the tests
 pip install -e ".[test]"

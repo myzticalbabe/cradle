@@ -10,4 +10,4 @@ package, which is why the parts live here rather than in a sibling directory.
 from .cradle import main
 
 __all__ = ["main"]
-__version__ = "0.1.0"
+__version__ = "0.1.1"

@@ -74,7 +74,8 @@ LOCAL_TOOLS = ROOT / "tools"
 SWORD_TOOLS = REPO / "Project_FLAMING_SWORD" / "tools"
 
 #: The four parts, with the path that must exist for the chain to be whole.
-#: Prefers vendored tools in Project_CRADLE/tools/; falls back to external FLAMING_SWORD.
+#: Prefers the parts vendored in this package's tools/; falls back to an external
+#: FLAMING_SWORD checkout, which is only ever present in the monorepo.
 def _part_path(name: str) -> Path:
     # Map CRADLE's internal names to actual filenames
     filename_map = {
@@ -132,7 +133,7 @@ def doctor(model_url: str = "", json_out: bool = False) -> int:
                    "%d.%d.%d (needs >= %d.%d; stdlib only, nothing to pip install)"
                    % (current + MIN_PYTHON)))
 
-    # A standalone install of CRADLE contains vendored tools in Project_CRADLE/tools/.
+    # A standalone install carries the parts in this package's own tools/ directory.
     # External FLAMING_SWORD is optional and provides updates/alternatives.
     chain_installed = LOCAL_TOOLS.is_dir()
     external_available = SWORD_TOOLS.is_dir()
@@ -351,7 +352,9 @@ def grimoire(state_dir: Optional[str] = None, kind: str = "", limit: int = 20,
         else:
             print("THE GRIMOIRE: no book yet at %s" % ledger)
             print("  nothing has failed here, and a lesson is written by a failure --")
-            print("  run `python Project_CRADLE/cradle.py --demo` to see one written")
+            # The command that works for whoever is reading this line: an installed
+            # wheel has no Project_CRADLE/ directory to point at.
+            print("  run `cradle --demo` to see one written")
         return 0
 
     records, error = bridge._read_jsonl(ledger)

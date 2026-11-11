@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "krampus-cradle"
-version = "0.1.0"
+version = "0.1.1"
 description = "One command over sword, defender, sentinel and memory — the composition, not a fifth part"
 readme = "README.md"
 authors = [{name = "Azazael"}]
