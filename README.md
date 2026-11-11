@@ -20,9 +20,19 @@ is the front door.
 ## Install
 
 ```bash
-pip install krampus-cradle          # from PyPI, once published
-pip install -e ".[test]"            # from a checkout
+# 1. the built wheel, attached to the release (works today, no index needed)
+pip install https://github.com/myzticalbabe/cradle/releases/download/v0.1.0/krampus_cradle-0.1.0-py3-none-any.whl
+
+# 2. straight from the repository
+pip install "krampus-cradle @ git+https://github.com/myzticalbabe/cradle.git@v0.1.0"
+
+# 3. from a checkout, with the tests
+pip install -e ".[test]"
 ```
+
+`pip install krampus-cradle` works the moment the PyPI trusted publisher exists; the
+publish workflow is gated on the repository variable `PYPI_TRUSTED_PUBLISHER` so a tag
+that cannot publish leaves a green repository rather than a red X.
 
 Stdlib only — no runtime dependencies. The five parts ship inside the package
 (`krampus_cradle/tools/`) because `cradle.py` loads each one from a real file path.
