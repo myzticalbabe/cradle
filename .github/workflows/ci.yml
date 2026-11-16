@@ -6,6 +6,10 @@ on:
     branches: [main, master]
 jobs:
   test:
+    # The check-run NAME is the status-check CONTEXT that branch protection matches.
+    # Without an explicit name it defaults to the job id ("test"), and the required
+    # context on main is "ci" -- so main could never be merged, however green this job is.
+    name: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
