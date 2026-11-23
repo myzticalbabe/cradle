@@ -8,7 +8,7 @@ version = "0.1.1"
 description = "One command over sword, defender, sentinel and memory — the composition, not a fifth part"
 readme = "README.md"
 authors = [{name = "Azazael"}]
-license = {text = "CDDL-1.1"}
+license = {text = "LicenseRef-SoulForge-1.0"}
 requires-python = ">=3.10"
 classifiers = [
   "Development Status :: 3 - Alpha",
