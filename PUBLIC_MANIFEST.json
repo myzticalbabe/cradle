@@ -1,0 +1,42 @@
+{
+  "name": "cradle",
+  "version": "1.0.0",
+  "description": "cradle repository",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myzticalbabe/cradle.git"
+  },
+  "homepage": "https://github.com/myzticalbabe/cradle",
+  "bugs": {
+    "url": "https://github.com/myzticalbabe/cradle/issues"
+  },
+  "license": "MIT",
+  "author": "cradle Contributors",
+  "maintainers": [
+    {
+      "name": "myzticalbabe",
+      "email": "maintainers@myzticalbabe.com",
+      "web": "https://github.com/myzticalbabe"
+    }
+  ],
+  "keywords": [
+    "stem",
+    "education",
+    "open-source"
+  ],
+  "categories": [
+    "education",
+    "stem"
+  ],
+  "support": {
+    "documentation": "https://github.com/myzticalbabe/cradle/wiki",
+    "discussions": "https://github.com/myzticalbabe/cradle/discussions",
+    "security": "https://github.com/myzticalbabe/cradle/security/advisories"
+  },
+  "governance": {
+    "code_of_conduct": "CODE_OF_CONDUCT.md",
+    "contributing": "CONTRIBUTING.md",
+    "security_policy": "SECURITY.md",
+    "disclosure_policy": "DISCLOSURE_POLICY.md"
+  }
+}
